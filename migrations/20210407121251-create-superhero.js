@@ -36,7 +36,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
        images: {
-        field: 'super_powers',
+        field: 'images',
         allowNull: false,
         type: Sequelize.ARRAY(Sequelize.STRING),
       },
