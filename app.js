@@ -7,7 +7,7 @@ app.use(express.static('public'));
 
 app.use(express.json());
 
-app.use('/api', router);
+app.use('/api/superheroes', router);
 
 app.use(errorHandler);
 

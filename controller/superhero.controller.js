@@ -1,6 +1,7 @@
 const createError = require('http-errors');
 const { Superhero } = require('../models');
 
+
 module.exports.createSuperhero = async (req, res, next) => {
   try {
     const { body } = req;
@@ -18,27 +19,24 @@ module.exports.createSuperhero = async (req, res, next) => {
   }
 };
 
-// module.exports.getAllUsers = async (req, res, next) => {
-//   try {
-//     const { pagination = {} } = req;
-//     const users = await User.findAll({
-//       attributes: {
-//         exclude: ['password'],
-//       },
-//       ...pagination,
-//     });
+module.exports.getSuperHeroes = async (req, res, next) => {
+  try {
+    const { pagination = {} } = req;
+    const heroes = await Superhero.findAll({
+      ...pagination,
+    });
 
-//     if (!users.length) {
-//       return next(createError(404, 'Users not found'));
-//     }
+    if (!heroes.length) {
+      return next(createError(404, 'Super Heroes not found'));
+    }
 
-//     res.status(200).send({
-//       data: users,
-//     });
-//   } catch (err) {
-//     next(err);
-//   }
-// };
+    res.status(200).send({
+      data: heroes,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
 
 module.exports.getSuperhero = async (req, res, next) => {
   try {
@@ -49,7 +47,7 @@ module.exports.getSuperhero = async (req, res, next) => {
     const superHero = await Superhero.findByPk(id, {});
 
     if (!superHero) {
-      const err = createError(404, 'User not found');
+      const err = createError(404, 'Super Hero not found');
       return next(err);
     }
 
@@ -59,52 +57,49 @@ module.exports.getSuperhero = async (req, res, next) => {
   }
 };
 
-// module.exports.updateUser = async (req, res, next) => {
-//   try {
-//     const {
-//       params: { id },
-//       body,
-//     } = req;
+module.exports.updateSuperHero = async (req, res, next) => {
+  try {
+    const {
+      params: { id },
+      body,
+    } = req;
 
-//     const [rowsCount, [updatedUser]] = await User.update(body, {
-//       where: { id },
-//       returning: true,
-//     });
+    const [rowsCount, [updateSuperHero]] = await Superhero.update(body, {
+      where: { id },
+      returning: true,
+    });
 
-//     if (rowsCount !== 1) {
-//       return next(createError(400, 'User cant be updated'));
-//     }
+    if (rowsCount !== 1) {
+      return next(createError(400, 'Super Hero cant be updated'));
+    }
 
-//     // delete updatedUser.password;
-//     updatedUser.password = undefined;
+    res.send({ data: updateSuperHero });
+  } catch (err) {
+    next(err);
+  }
+};
 
-//     res.send({ data: updatedUser });
-//   } catch (err) {
-//     next(err);
-//   }
-// };
+module.exports.deleteSuperHero = async (req, res, next) => {
+  try {
+    const {
+      params: { id },
+    } = req;
 
-// module.exports.deleteUser = async (req, res, next) => {
-//   try {
-//     const {
-//       params: { id },
-//     } = req;
+    const rowsCount = await Superhero.destroy({ where: { id } });
 
-//     const rowsCount = await User.destroy({ where: { id } });
+    if (rowsCount !== 1) {
+      return next(createError(404, 'Super Hero not found'));
+    }
 
-//     if (rowsCount !== 1) {
-//       return next(createError(404, 'User not found'));
-//     }
+    res.send({ data: result });
+  } catch (err) {
+    next(err);
+  }
+};
 
-//     res.send({ data: result });
-//   } catch (err) {
-//     next(err);
-//   }
-// };
 module.exports.addImage = async (req, res, next) => {
   try {
-    res.send(req.file)
-  
+    res.send(req.file);
   } catch (err) {
     next(err);
   }
