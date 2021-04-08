@@ -101,3 +101,11 @@ module.exports.getSuperhero = async (req, res, next) => {
 //     next(err);
 //   }
 // };
+module.exports.addImage = async (req, res, next) => {
+  try {
+    res.send(req.file)
+  
+  } catch (err) {
+    next(err);
+  }
+};
