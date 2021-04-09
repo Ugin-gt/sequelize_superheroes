@@ -1,29 +1,19 @@
 const path = require('path');
 const { Router } = require('express');
-const multer = require('multer');
-const HeroController = require('../controller/superhero.controller');
+const heroController = require('../controller/superhero.controller');
 const paginate = require('../middlewares/paginate.mw');
-const { STATIC_PATH } = require('../config/config');
+const uploadImage = require('../middlewares/upload.image');
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, STATIC_PATH);
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}.${file.originalname}`);
-  },
-});
 
-const upload = multer({ storage });
 const heroRouter = Router();
 
-heroRouter.get('/', paginate, HeroController.getSuperHeroes);
-heroRouter.post('/', HeroController.createSuperhero);
+heroRouter.get('/', paginate, heroController.getSuperHeroes);
+heroRouter.post('/', heroController.createSuperhero);
 
-heroRouter.get('/:id', HeroController.getSuperhero);
-heroRouter.patch('/:id', HeroController.updateSuperHero);
-heroRouter.delete('/:id', HeroController.deleteSuperHero);
+heroRouter.get('/:id', heroController.getSuperhero);
+heroRouter.patch('/:id', heroController.updateSuperHero);
+heroRouter.delete('/:id', heroController.deleteSuperHero);
 
-heroRouter.post('/:id/image', upload.single('image'), HeroController.addImageHero);
+heroRouter.post('/:id/images', uploadImage, heroController.addImageHero);
 
 module.exports = heroRouter;

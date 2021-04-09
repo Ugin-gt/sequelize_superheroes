@@ -50,7 +50,7 @@ module.exports.getSuperhero = async (req, res, next) => {
       return next(err);
     }
 
-    res.send(superHero);
+    res.send({data:superHero});
   } catch (err) {
     next(err);
   }
@@ -90,32 +90,33 @@ module.exports.deleteSuperHero = async (req, res, next) => {
       return next(createError(404, 'Super Hero not found'));
     }
 
-    res.send({ data: result });
+    res.send({ data: rowsCount });
   } catch (err) {
     next(err);
   }
 };
 
-module.exports.addImageHero = async (req, res, next) => {
-  try {
-    const {
-      file: { filename },
-      params: { id },
-    } = req;
+// module.exports.addImageHero = async (req, res, next) => {
+//   try {
+//     const {
+//       files,
+//       params: { id },
+//     } = req;
+    
+//     const files = Superhero.map({images:[filename]})
+//     const [count, [addImageHero]] = await Superhero.update(
+//       { images: [filename] },
+//       {
+//         where: { id: id },
+//         returning: true,
+//       }
+//     );
+//     if (count !== 1) {
+//       return next(createError(400, 'Super Hero cant be updated'));
+//     }
 
-    const [count, [addImageHero]] = await Superhero.update(
-      { imagePath: filename },
-      {
-        where: { id: id },
-        returning: true,
-      }
-    );
-    if (count !== 1) {
-      return next(createError(400, 'Super Hero cant be updated'));
-    }
-
-    res.send(addImageHero);
-  } catch (err) {
-    next(err);
-  }
-};
+//     res.send(addImageHero);
+//   } catch (err) {
+//     next(err);
+//   }
+// };
