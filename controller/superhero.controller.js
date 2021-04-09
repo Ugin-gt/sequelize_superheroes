@@ -1,7 +1,6 @@
 const createError = require('http-errors');
 const { Superhero } = require('../models');
 
-
 module.exports.createSuperhero = async (req, res, next) => {
   try {
     const { body } = req;
@@ -97,9 +96,25 @@ module.exports.deleteSuperHero = async (req, res, next) => {
   }
 };
 
-module.exports.addImage = async (req, res, next) => {
+module.exports.addImageHero = async (req, res, next) => {
   try {
-    res.send(req.file);
+    const {
+      file: { filename },
+      params: { id },
+    } = req;
+
+    const [count, [addImageHero]] = await Superhero.update(
+      { imagePath: filename },
+      {
+        where: { id: id },
+        returning: true,
+      }
+    );
+    if (count !== 1) {
+      return next(createError(400, 'Super Hero cant be updated'));
+    }
+
+    res.send(addImageHero);
   } catch (err) {
     next(err);
   }

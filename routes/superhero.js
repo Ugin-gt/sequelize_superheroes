@@ -3,6 +3,7 @@ const { Router } = require('express');
 const multer = require('multer');
 const HeroController = require('../controller/superhero.controller');
 const paginate = require('../middlewares/paginate.mw');
+const { STATIC_PATH } = require('../config/config');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -13,7 +14,7 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ dest: path.resolve(__dirname, '../public/images') });
+const upload = multer({ storage });
 const heroRouter = Router();
 
 heroRouter.get('/', paginate, HeroController.getSuperHeroes);
@@ -23,6 +24,6 @@ heroRouter.get('/:id', HeroController.getSuperhero);
 heroRouter.patch('/:id', HeroController.updateSuperHero);
 heroRouter.delete('/:id', HeroController.deleteSuperHero);
 
-heroRouter.post('/:id/image', upload.single('image'), HeroController.addImage);
+heroRouter.post('/:id/image', upload.single('image'), HeroController.addImageHero);
 
 module.exports = heroRouter;
