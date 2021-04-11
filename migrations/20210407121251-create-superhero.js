@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Superheroes', {
+    await queryInterface.createTable('superheroes', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,36 +9,26 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       nickName: {
-        type: Sequelize.STRING,
         field: 'nick_name',
+        type: Sequelize.STRING,
         allowNull: false,
-        type: Sequelize.STRING(128),
+        unique: true,
       },
       realName: {
-        type: Sequelize.STRING,
         field: 'real_name',
+        type: Sequelize.STRING,
         allowNull: false,
-        type: Sequelize.STRING(228),
+        unique: true,
       },
       originDescription: {
         field: 'origin_description',
-        allowNull: false,
         type: Sequelize.TEXT,
-      },
-      superPowers: {
-        field: 'super_powers',
         allowNull: false,
-        type: Sequelize.ARRAY(Sequelize.STRING),
       },
       cathPhrase: {
         field: 'cath_phrase',
         allowNull: false,
         type: Sequelize.STRING,
-      },
-       images: {
-        field: 'images',
-        allowNull: false,
-        type: Sequelize.ARRAY(Sequelize.STRING),
       },
       createdAt: {
         field: 'created_at',
@@ -53,6 +43,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Superheroes');
+    await queryInterface.dropTable('superheroes');
   },
 };

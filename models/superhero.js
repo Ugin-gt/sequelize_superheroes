@@ -4,7 +4,12 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Superhero extends Model {
     static associate (models) {
-      // define association here
+      Superhero.hasMany(models.Superpower, {
+        foreignKey: 'superheroId',
+      });
+      Superhero.hasMany(models.Image, {
+        foreignKey: 'superheroId',
+      });
     }
   }
   Superhero.init(
@@ -13,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         field: 'nick_name',
         allowNull: false,
         type: DataTypes.STRING,
+        unique: true,
         validate: {
           notNull: true,
           notEmpty: true,
@@ -22,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         field: 'real_name',
         allowNull: false,
         type: DataTypes.STRING,
+        unique: true,
         validate: {
           notNull: true,
           notEmpty: true,
@@ -36,15 +43,6 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: true,
         },
       },
-      superPowers: {
-        field: 'super_powers',
-        allowNull: false,
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        validate: {
-          notNull: true,
-          notEmpty: true,
-        },
-      },
       cathPhrase: {
         field: 'cath_phrase',
         allowNull: false,
@@ -54,19 +52,11 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: true,
         },
       },
-      images: {
-        allowNull: false,
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        validate: {
-          notNull: true,
-          notEmpty: true,
-        },
-      },
     },
     {
       sequelize,
       modelName: 'Superhero',
-      tableName: 'Superheroes',
+      tableName: 'superheroes',
       underscored: true,
     }
   );
