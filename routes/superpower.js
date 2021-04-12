@@ -2,12 +2,13 @@ const { Router } = require('express');
 const powerController = require('../controller/superpower.controller');
 const paginate = require('../middlewares/paginate.mw');
 
-const superpowerRouter = Router();
+const powerRouter = Router();
 
-superpowerRouter.post('/create', powerController.createSuperpower);
-superpowerRouter.get('/get/:id', powerController.getSuperpower);
-superpowerRouter.get('/getAll', paginate, powerController.getAllSuperpowers);
-superpowerRouter.delete('/delete/:id', powerController.deleteSuperpower);
-superpowerRouter.patch('/update/:id', powerController.updateSuperpower);
+powerRouter.post('/', powerController.createSuperpowers);
+powerRouter.get('/', paginate, powerController.getAllSuperpowers);
 
-module.exports = superpowerRouter;
+powerRouter.get('/:id', powerController.getSuperpower);
+powerRouter.delete('/:id', powerController.deleteSuperpower);
+
+
+module.exports = powerRouter;

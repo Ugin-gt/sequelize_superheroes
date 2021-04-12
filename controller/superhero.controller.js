@@ -1,7 +1,6 @@
 const createError = require('http-errors');
 const { Superhero, Image, Superpower } = require('../models');
 
-
 module.exports.createSuperhero = async (req, res, next) => {
   try {
     const { body } = req;
@@ -34,6 +33,10 @@ module.exports.getSuperHeroes = async (req, res, next) => {
   try {
     const { pagination } = req;
     const heroes = await Superhero.findAll({
+      include: [
+        { model: Superpower, attributes: { exclude: ['superheroId'] } },
+        { model: Image, attributes: { exclude: ['superheroId'] } },
+      ],
       ...pagination,
     });
 
@@ -80,6 +83,10 @@ module.exports.updateSuperHero = async (req, res, next) => {
 
     const [rowsCount, [updateSuperHero]] = await Superhero.update(body, {
       where: { id },
+      include: [
+        { model: Superpower, attributes: { exclude: ['superheroId'] } },
+        { model: Image, attributes: { exclude: ['superheroId'] } },
+      ],
       returning: true,
     });
 
@@ -106,31 +113,6 @@ module.exports.deleteSuperHero = async (req, res, next) => {
     }
 
     res.send({ data: rowsCount });
-  } catch (err) {
-    next(err);
-  }
-};
-
-module.exports.addHeroImages = async (req, res, next) => {
-  try {
-    const {
-      files,
-      params: { id },
-    } = req;
-    const files = Superhero.map({ images: [filename] });
-
-    const [count, [addHeroImages]] = await Superhero.update(
-      { images: [filename] },
-      {
-        where: { id: id },
-        returning: true,
-      }
-    );
-    if (count !== 1) {
-      return next(createError(400, 'Super Hero cant be updated'));
-    }
-
-    res.send(addHeroImages);
   } catch (err) {
     next(err);
   }

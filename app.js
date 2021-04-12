@@ -8,7 +8,7 @@ app.use(express.static(STATIC_PATH));
 
 app.use(express.json());
 
-app.use('/api/superheroes', router);
+app.use('/api', router);
 
 app.use(errorHandler);
 

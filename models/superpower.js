@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       superPowers: {
         field:'super_powers',
         allowNull: false,
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.STRING,
         unique: true,
         validate: {
           notNull: true,

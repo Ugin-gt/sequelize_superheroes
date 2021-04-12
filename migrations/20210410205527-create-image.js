@@ -11,7 +11,7 @@ module.exports = {
       imagePath: {
         field:'image_path',
         allowNull: false,
-        type: Sequelize.ARRAY(Sequelize.STRING),
+        type: Sequelize.STRING,
       },
       superheroId: {
         field:'superhero_id',

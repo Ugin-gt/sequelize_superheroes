@@ -6,8 +6,8 @@ Content-Type: application/json
 #   "realName": "Clark Kent",  
 #   "originDescription": "he was born Kal-El on the planet Krypton,before being rocketed to Earth as an infant by his scientist father Jor-El, moments before Krypton's destruction...",  
 #   "superPowers": ["solar energy absorption and healing factor","solar flare and heat vision","solar invulnerability","flight..."],          
-#   "cathPhrase":  "Look, up in the sky, it's a bird, it's a plane, it's Superman!",    
-#   "images": ["a set of images of the superhero"]
+#   "cathPhrase":  "Look, up in the sky, it's a bird, it's a plane, it's Superman!"    
+
 #  }
 
 # {
@@ -15,8 +15,8 @@ Content-Type: application/json
 #   "realName": "Tony Stark",  
 #   "originDescription": "Anthony Edward 'Tony' Stark was born on May 29, 1970, in Manhattan, New York to Howard Stark, a famous genius inventor and businessman, and Maria Stark, a New York socialite and philanthropist. Growing up under the eye of family butler Edwin Jarvis, his life was characterized by a cold and affectionless relationship with his father.",  
 #   "superPowers": ["Genius level intellect","Proficient scientist and engineer","Powered armor suit: Superhuman strength, speed, durability, agility, reflexes, and senses","Supersonic flight","Energy repulsor and missile projection","Regenerative life support"],          
-#   "cathPhrase":  "Drop your socks and grab your Crocs, we're about to get wet on this ride.",    
-#   "images": ["a set of images of the Iron Man"]
+#   "cathPhrase":  "Drop your socks and grab your Crocs, we're about to get wet on this ride."    
+
 #  }
 
 
@@ -26,14 +26,14 @@ Content-Type: application/json
 #   "originDescription": "Thanos was born on Saturn's moon Titan as the son of Eternals A'lars and Sui-San; his brother is Eros of Titan. Thanos carries the Deviants gene, and as such, shares the physical appearance of the Eternals' cousin race. Shocked by his appearance and the belief that he would destroy all life in the universe, Sui-San attempted to kill him, but she was stopped by A'lars.",  
 #   "superPowers": ["Eternal heritage","Bionic amplification","Mysticism","Absorb and project vast quantities of cosmic energy","Telekinesis and telepathy"],          
 #   "cathPhrase":  "This universe is finite, its resources, finite… if life is left unchecked, life will cease to exist." ,    
-#   "images": ["a set of images of the Thanos"]
+#  
 #  }
 
-{
-  "nickName": "Spiderman",
-  "realName": "Peter Parker",  
-  "originDescription": "In Forest Hills, Queens, New York City, Midtown High School student Peter Benjamin Parker is a science-whiz orphan living with his Uncle Ben and Aunt May. He is bitten by a radioactive spider (erroneously classified as an insect in the panel) at a science exhibit and 'acquires the agility and proportionate strength of an arachnid'. Along with heightened athletic abilities, Parker gains the ability to adhere to walls and ceilings. Through his native knack for science, he develops a gadget that lets him fire adhesive webbing of his own design through small, wrist-mounted barrels. Initially seeking to capitalize on his new abilities, Parker dons a costume and, as Spider-Man, becomes a novelty television star.",  
-  "superPowers":["Superhuman strength, speed, reflexes, agility, coordination and balance","Ability to cling to solid surfaces","Accelerated healing","Genius level intellect","Proficient scientist and engineer","Precognitive spider-sense ability","Utilizing wrist-mounted web-shooters"],
-  "cathPhrase":  "With Great Power, Comes Great Responsibility.Your Friendly Neighborhood Spider-Man.",    
-  "images": ["a set of images of the Thanos"]
-}
+# {
+#   "nickName": "Spiderman",
+#   "realName": "Peter Parker",  
+#   "originDescription": "In Forest Hills, Queens, New York City, Midtown High School student Peter Benjamin Parker is a science-whiz orphan living with his Uncle Ben and Aunt May. He is bitten by a radioactive spider (erroneously classified as an insect in the panel) at a science exhibit and 'acquires the agility and proportionate strength of an arachnid'. Along with heightened athletic abilities, Parker gains the ability to adhere to walls and ceilings. Through his native knack for science, he develops a gadget that lets him fire adhesive webbing of his own design through small, wrist-mounted barrels. Initially seeking to capitalize on his new abilities, Parker dons a costume and, as Spider-Man, becomes a novelty television star.",  
+#   "superPowers":["Superhuman strength, speed, reflexes, agility, coordination and balance","Ability to cling to solid surfaces","Accelerated healing","Genius level intellect","Proficient scientist and engineer","Precognitive spider-sense ability","Utilizing wrist-mounted web-shooters"],
+#   "cathPhrase":  "With Great Power, Comes Great Responsibility.Your Friendly Neighborhood Spider-Man."    
+#   
+# }

@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       imagePath: {
         field:'image_path',        
         allowNull: false,
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.STRING,
         validate: {
           notNull: true,
           notEmpty: true,

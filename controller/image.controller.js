@@ -1,28 +1,76 @@
 const createError = require('http-errors');
 const { Superhero, Image } = require('../models');
 
-module.exports.addImgToHero = async (req, res, next) => {
+module.exports.createHeroImages = async (req, res, next) => {
+  try {
+    const { body } = req;
+
+    const heroImages = findAll(body, ['imagePath']);
+    const heroImagesArray = heroImages.map(stringImg => {
+      return { imagePath: stringImg };
+    });
+    const createdHeroImages = await Image.bulkCreate(heroImagesArray);
+
+    if (!createdHeroImages) {
+      return next(createError(400));
+    }
+
+    res.status(201).send({ data: createdHeroImages });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.getAllImages = async (req, res, next) => {
+  try {
+    const { pagination = {} } = req;
+
+    const heroesImages = await Image.findAll({
+      ...pagination,
+    });
+
+    if (!heroesImages.length) {
+      return next(createError(404, 'Heroes Images not found'));
+    }
+
+    res.send({ data: heroesImages });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.getHeroImage = async (req, res, next) => {
   try {
     const {
-      body,
-      file: { filename },
+      params: { id },
     } = req;
 
-    const heroImages = await Image.create({
-      imagePath: filename,
-      superheroId: body.superheroId,
-    });
+    const heroImage = await Image.findByPk(id);
 
-    const hero = await Superhero.findByPk(body.superheroId, {
-      include: { model: Image },
-    });
-
-    if (!hero || !heroImages) {
-      const err = createError(404, 'Not found');
+    if (!heroImage) {
+      const err = createError(404, 'Hero Image not found');
       return next(err);
     }
 
-    res.send({ data: hero });
+    res.send({ date: heroImage });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.deleteHeroImage = async (req, res, next) => {
+  try {
+    const {
+      params: { id },
+    } = req;
+
+    const rowsCount = await Image.destroy({ where: { id } });
+
+    if (rowsCount !== 1) {
+      return next(createError(404, 'Superpower Hero Image not found'));
+    }
+
+    res.send({ data: rowsCount });
   } catch (err) {
     next(err);
   }

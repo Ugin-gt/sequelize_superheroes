@@ -6,16 +6,16 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       superPowers: {
         field: 'super_powers',
         allowNull: false,
         unique: true,
-        type: Sequelize.ARRAY(Sequelize.STRING),
+        type: Sequelize.STRING,
       },
       superheroId: {
-        field:'superhero_id',
+        field: 'superhero_id',
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -26,18 +26,18 @@ module.exports = {
         onUpdate: 'cascade',
       },
       createdAt: {
-        field: "created_at",
+        field: 'created_at',
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
-        field: "updated_at",
+        field: 'updated_at',
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('superpowers');
-  }
+  },
 };

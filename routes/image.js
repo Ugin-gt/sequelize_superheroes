@@ -6,6 +6,10 @@ const uploadImage = require('../middlewares/upload.image');
 const imageRouter = Router();
 
 
-imageRouter.post('/add/:id/images', uploadImage, imageController.addHeroImages);
+imageRouter.post('/', uploadImage, paginate, imageController.createHeroImages);
+imageRouter.get('/', paginate, imageController.getAllImages);
+
+imageRouter.get('/:id', imageController.getHeroImage);
+imageRouter.delete('/id:', imageController.deleteHeroImage);
 
 module.exports = imageRouter;
